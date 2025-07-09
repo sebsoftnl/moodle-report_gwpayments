@@ -29,12 +29,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2024090100;
+$plugin->version = 2025070800;
 $plugin->requires = 2023042400;
 $plugin->component = 'report_gwpayments';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.0.0 (build 2024090100)';
+$plugin->release = '1.0.1 (build 2025070800)';
 $plugin->dependencies = [
     'enrol_gwpayments' => 2024080100,
 ];
-$plugin->supported = [402, 404];
+$plugin->supported = [404, 500];

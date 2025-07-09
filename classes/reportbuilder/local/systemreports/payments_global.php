@@ -130,7 +130,7 @@ class payments_global extends system_report {
         ]);
 
         // Add COST column from enrol table.
-        $enrol = new enrolment();
+        $enrol = $this->get_entity('enrolment');
         $enrolalias = $enrol->get_table_alias('enrol');
         $this->add_column((new \core_reportbuilder\local\report\column('cost', new \lang_string('cost')
                                 , $enrol->get_entity_name()))

@@ -65,11 +65,16 @@ class payments_course extends system_report {
 
         $course = new course();
         $coursealias = $course->get_table_alias('course');
+        $this->add_entity($course);
+
         $enrol = new enrolment();
         $enrolalias = $enrol->get_table_alias('enrol');
+        $this->add_entity($enrol);
+
         $userenrolalias = $enrol->get_table_alias('user_enrolments');
         $user = new user();
         $useralias = $user->get_table_alias('user');
+
         $this->add_entity($user->add_join(
                         "LEFT JOIN {user} {$useralias} ON {$useralias}.id = {$mainalias}.userid
              LEFT JOIN {user_enrolments} {$userenrolalias} ON {$userenrolalias}.userid = {$mainalias}.userid
@@ -138,9 +143,8 @@ class payments_course extends system_report {
         );
 
         // Add COST column from enrol table.
-        $enrol = new enrolment();
+        $enrol = $this->get_entity('enrolment');
         $enrolalias = $enrol->get_table_alias('enrol');
-        $this->annotate_entity($enrol->get_entity_name(), $enrol->get_entity_title());
         $this->add_column((new \core_reportbuilder\local\report\column('cost', new \lang_string('cost')
                                 , $enrol->get_entity_name()))
                         ->add_field("{$enrolalias}.cost")
